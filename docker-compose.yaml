@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:latest
+    container_name: web
+    restart: always
+    environment:
+      TZ: 'Asia/Bangkok'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - web-data:/var/www/html
+      - web-config:/etc/nginx
+      - web-log:/var/log/nginx
+  php-80-01:
+    image: bucchub/php-fpm-lab:8.2
+    container_name: php-80-01
+    restart: always
+    volumes:
+      - web-data:/var/www/html
+      - php-80-config:/usr/local/etc
+  php-81-01:
+    image: bucchub/php-fpm-lab:8.2
+    container_name: php-81-01
+    restart: always
+    volumes:
+      - web-data:/var/www/html
+      - php-81-config:/usr/local/etc
+  php-82-01:
+    image: bucchub/php-fpm-lab:8.2
+    container_name: php-82-01
+    restart: always
+    volumes:
+      - web-data:/var/www/html
+      - php-82-config:/usr/local/etc/
+  mariadb:
+    image: mariadb:11.1
+    container_name: mariadb
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+      - db-config:/etc/mysql/conf.d
+    environment:
+      TZ: 'Asia/Bangkok'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      TZ: 'Asia/Bangkok'
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 0
+      UPLOAD_LIMIT: 1024M
+    restart: always
+    ports:
+      - 8081:80
+networks:
+  default:
+    name: web
+volumes:
+  web-data:
+  web-log:
+  web-config:
+  php-80-config:
+  php-81-config:
+  php-82-config:
+  db-data:
+  db-config:
