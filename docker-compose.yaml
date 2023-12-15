@@ -14,26 +14,12 @@ services:
       - web-config:/etc/nginx
       - web-log:/var/log/nginx
   php-80-01:
-    image: bucchub/php-fpm-lab:8.2
+    image: bucchub/php-fpm:8.0
     container_name: php-80-01
     restart: always
     volumes:
       - web-data:/var/www/html
       - php-80-config:/usr/local/etc
-  php-81-01:
-    image: bucchub/php-fpm-lab:8.2
-    container_name: php-81-01
-    restart: always
-    volumes:
-      - web-data:/var/www/html
-      - php-81-config:/usr/local/etc
-  php-82-01:
-    image: bucchub/php-fpm-lab:8.2
-    container_name: php-82-01
-    restart: always
-    volumes:
-      - web-data:/var/www/html
-      - php-82-config:/usr/local/etc/
   mariadb:
     image: mariadb:11.1
     container_name: mariadb
