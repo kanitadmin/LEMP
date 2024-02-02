@@ -42,7 +42,6 @@ services:
       PMA_PORT: 3306
       PMA_ARBITRARY: 0
       UPLOAD_LIMIT: 1024M
-    restart: always
     ports:
       - 8081:80
 networks:
