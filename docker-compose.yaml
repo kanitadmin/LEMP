@@ -21,7 +21,7 @@ services:
       - web-data:/var/www/html
       - php-80-config:/usr/local/etc
   mariadb:
-    image: mariadb:11.1
+    image: mariadb:11.4
     container_name: mariadb
     restart: always
     volumes:
