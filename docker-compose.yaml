@@ -13,6 +13,11 @@ services:
       - web-data:/var/www/html
       - web-config:/etc/nginx
       - web-log:/var/log/nginx
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:514"
+        tag: "nginx"
   php-80-01:
     image: bucchub/php-fpm:8.0
     container_name: php-80-01
@@ -32,6 +37,11 @@ services:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
     #ports:
     #  - 3306:3306
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp://127.0.0.1:514"
+        tag: "mariadb"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
