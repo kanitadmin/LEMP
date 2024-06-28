@@ -62,7 +62,5 @@ volumes:
   web-log:
   web-config:
   php-80-config:
-  php-81-config:
-  php-82-config:
   db-data:
   db-config:
