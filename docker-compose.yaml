@@ -43,7 +43,7 @@ services:
     #    syslog-address: "tcp://127.0.0.1:514"
     #    tag: "mariadb"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin
     container_name: phpmyadmin
     restart: always
     environment:
